@@ -21,7 +21,7 @@ public enum GlobalMessage implements IMessage {
     ACCESS_DENIED("000007", "Access Denied."),
     NOT_FOUND("000008", "Not found."),
     PAYLOAD_TOO_LARGE("000009", "Payload too large."),
-    SERVICE_UNAVAILABLE("88888888", "Service Unavailable.");
+    SERVICE_UNAVAILABLE("888888", "Service Unavailable.");
 
     private static final Map<String, GlobalMessage> CODE_TO_MESSAGE_MAP =
             Arrays.stream(GlobalMessage.values())
