@@ -2,7 +2,6 @@ package fec.digiflow.common.service;
 
 import fec.digiflow.common.dto.LazyLoadEvent;
 import fec.digiflow.common.dto.PagedResponse;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
