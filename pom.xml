@@ -138,4 +138,27 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>uat</id>
+            <distributionManagement>
+                <repository>
+                    <id>digiflow-uat</id>
+                    <name>DigiFlow UAT Repository</name>
+                    <url>https://YOUR_AWS_DOMAIN-YOUR_ACCOUNT_ID.d.codeartifact.YOUR_REGION.amazonaws.com/maven/digiflow-uat/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <distributionManagement>
+                <repository>
+                    <id>digiflow-prod</id>
+                    <name>DigiFlow PROD Repository</name>
+                    <url>https://YOUR_AWS_DOMAIN-YOUR_ACCOUNT_ID.d.codeartifact.YOUR_REGION.amazonaws.com/maven/digiflow-prod/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
 </project>
