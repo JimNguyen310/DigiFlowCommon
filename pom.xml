@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.3</version>
+        <version>3.5.6</version>
         <relativePath/>
     </parent>
 
@@ -17,26 +17,65 @@
 
     <properties>
         <java.version>25</java.version>
-        <commons-lang3.version>3.20.0</commons-lang3.version>
-        <jackson-3.version>3.1.0</jackson-3.version>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <org.projectlombok.version>1.18.32</org.projectlombok.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <feign.version>13.2.1</feign.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-        <org.springdoc.version>3.0.2</org.springdoc.version>
+        <org.springdoc.version>2.8.14</org.springdoc.version>
+        <logback.version>1.5.19</logback.version>
+        <netty.version>4.2.9.Final</netty.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- Force Netty version to fix CVE-2025-67735 -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+        <!-- MapStruct for object mapping -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring Boot Devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -44,61 +83,22 @@
             <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- mapstruct -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Jackson 3.0 Dependencies (tools.jackson) -->
-        <dependency>
-            <groupId>tools.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson-3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>tools.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc</artifactId>
-        </dependency>
-
-        <!-- springdoc-openapi -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${org.springdoc.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.21.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.21.1</version>
-        </dependency>
+        <!-- Apache Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${org.springdoc.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -106,11 +106,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.15.0</version>
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
@@ -137,28 +139,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>uat</id>
-            <distributionManagement>
-                <repository>
-                    <id>digiflow-uat</id>
-                    <name>DigiFlow UAT Repository</name>
-                    <url>https://YOUR_AWS_DOMAIN-YOUR_ACCOUNT_ID.d.codeartifact.YOUR_REGION.amazonaws.com/maven/digiflow-uat/</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <distributionManagement>
-                <repository>
-                    <id>digiflow-prod</id>
-                    <name>DigiFlow PROD Repository</name>
-                    <url>https://YOUR_AWS_DOMAIN-YOUR_ACCOUNT_ID.d.codeartifact.YOUR_REGION.amazonaws.com/maven/digiflow-prod/</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-    </profiles>
-
 </project>

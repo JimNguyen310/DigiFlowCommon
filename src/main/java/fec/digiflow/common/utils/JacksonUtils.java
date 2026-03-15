@@ -1,13 +1,13 @@
 package fec.digiflow.common.utils;
 
 import fec.digiflow.common.exception.JsonOperationException;
-import tools.jackson.core.type.TypeReference;
-import tools.jackson.databind.DeserializationFeature;
-import tools.jackson.databind.JavaType;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.SerializationFeature;
-import tools.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +15,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
- * A utility class for JSON operations using the Jackson 3.0 library.
+ * A utility class for JSON operations using the Jackson library.
  * Provides a pre-configured, thread-safe ObjectMapper and convenient methods
  * for serialization and deserialization.
  */
@@ -52,7 +52,7 @@ public final class JacksonUtils {
         }
         try {
             return MAPPER.writeValueAsString(obj);
-        } catch (JsonOperationException e) {
+        } catch (Exception e) {
             throw new JsonOperationException("Failed to serialize object to JSON", e);
         }
     }
