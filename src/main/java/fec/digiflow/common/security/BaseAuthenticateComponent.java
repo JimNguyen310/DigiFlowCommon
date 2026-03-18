@@ -41,23 +41,7 @@ public class BaseAuthenticateComponent {
                 return null;
             }
         } catch (Exception e) {
-            log.error("Error: " + e.getMessage());
-        }
-        return null;
-    }
-
-    public String getPartnerId() {
-        try {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication != null) {
-                SessionUser userInfo = (SessionUser) authentication.getPrincipal();
-                if (userInfo != null) {
-                    return userInfo.partnerId();
-                }
-                return null;
-            }
-        } catch (Exception e) {
-            log.error("Error: " + e.getMessage());
+            log.error("Error: {}", e.getMessage());
         }
         return null;
     }
