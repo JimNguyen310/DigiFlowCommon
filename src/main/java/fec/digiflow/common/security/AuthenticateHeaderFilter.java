@@ -2,18 +2,12 @@ package fec.digiflow.common.security;
 
 import fec.digiflow.common.exception.ApplicationException;
 import fec.digiflow.common.message.GlobalMessage;
-import fec.partner.common.dtos.SessionUser;
-import fec.partner.common.enums.CommonMessage;
-import fec.partner.common.exceptions.CommonException;
-import fec.partner.common.utils.JacksonUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
@@ -21,13 +15,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static fec.digiflow.common.consts.GlobalApplicationConst.API_KEY_HEADER;
 import static fec.digiflow.common.consts.GlobalApplicationConst.USER_KEY_HEADER;
-import static fec.partner.common.consts.CommonApplicationConst.API_KEY_HEADER;
-import static fec.partner.common.consts.CommonApplicationConst.USER_KEY_HEADER;
 
 @Slf4j
 public class AuthenticateHeaderFilter extends OncePerRequestFilter {

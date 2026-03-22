@@ -10,7 +10,8 @@ public enum IamMessage implements IMessage {
     USER_NOT_FOUND ("100001", "User not found"),
     USER_REFRESH_TOKEN_NOT_FOUND ("100002", "User refresh token not found"),
     REFRESH_TOKEN_EXPIRED("100003", "Refresh token expired. Please make a new request"),
-    PASSWORD_NOT_MATCH("100004", "Password not match");
+    PASSWORD_NOT_MATCH("100004", "Password not match"),
+    USER_INACTIVE("100005", "User is inactive"),
     ;
 
     private final String code;
