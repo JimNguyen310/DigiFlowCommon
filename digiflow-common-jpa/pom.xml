@@ -10,5 +10,30 @@
     </parent>
 
     <artifactId>digiflow-common-jpa</artifactId>
+    <name>DigiFlow Common JPA</name>
+    <description>JPA Repositories, Entities, Specifications and Database Utilities</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>fec.digiflow</groupId>
+            <artifactId>digiflow-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
