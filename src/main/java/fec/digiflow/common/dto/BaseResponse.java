@@ -54,7 +54,7 @@ public final class BaseResponse<TData> {
      * Creates a failure response with an IMessage.
      *
      * @param message the application message.
-     * @param detail optional detail error message
+     * @param detail  optional detail error message
      * @return a failure BaseResponse instance.
      */
     public static <TData> BaseResponse<TData> failure(IMessage message, String... detail) {
@@ -83,7 +83,7 @@ public final class BaseResponse<TData> {
     /**
      * Creates a failure response with code and message.
      *
-     * @param code the error code.
+     * @param code    the error code.
      * @param message the error message.
      * @return a failure BaseResponse instance.
      */
@@ -97,8 +97,8 @@ public final class BaseResponse<TData> {
     /**
      * Creates a failure response with code, message and detail.
      *
-     * @param code the error code.
-     * @param message the error message.
+     * @param code        the error code.
+     * @param message     the error message.
      * @param detailError the detail error message.
      * @return a failure BaseResponse instance.
      */

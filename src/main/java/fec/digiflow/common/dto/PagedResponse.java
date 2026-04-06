@@ -5,7 +5,8 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-public record PagedResponse<T>(List<T> content, int page, int size, long totalElements, int totalPages, boolean last, boolean first) {
+public record PagedResponse<T>(List<T> content, int page, int size, long totalElements, int totalPages, boolean last,
+                               boolean first) {
     public PagedResponse(@Schema(description = "List of content in the current page") List<T> content, @Schema(description = "Current page number (0-based)") int page, @Schema(description = "Size of the page") int size, @Schema(description = "Total number of elements") long totalElements, @Schema(description = "Total number of pages") int totalPages, @Schema(description = "Is this the last page?") boolean last, @Schema(description = "Is this the first page?") boolean first) {
         this.content = content;
         this.page = page;

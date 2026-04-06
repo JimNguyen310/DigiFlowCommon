@@ -111,11 +111,11 @@ public abstract class BaseRestClient {
 
         try {
             RestClient.RequestBodySpec requestSpec = restClient.method(method).uri(path);
-            
+
             if (headers != null) {
                 requestSpec.headers(h -> h.addAll(headers));
             }
-            
+
             if (requestBody != null) {
                 requestSpec.body(requestBody);
             }
@@ -123,12 +123,12 @@ public abstract class BaseRestClient {
             R response = requestSpec.retrieve()
                     .onStatus(HttpStatusCode::isError, (request, clientResponse) -> {
                         throw new RestClientResponseException(
-                            "API call failed: " + clientResponse.getStatusCode(),
-                            clientResponse.getStatusCode().value(),
-                            clientResponse.getStatusText(),
-                            clientResponse.getHeaders(),
-                            clientResponse.getBody().readAllBytes(),
-                            StandardCharsets.UTF_8
+                                "API call failed: " + clientResponse.getStatusCode(),
+                                clientResponse.getStatusCode().value(),
+                                clientResponse.getStatusText(),
+                                clientResponse.getHeaders(),
+                                clientResponse.getBody().readAllBytes(),
+                                StandardCharsets.UTF_8
                         );
                     })
                     .body(responseType);
@@ -154,7 +154,7 @@ public abstract class BaseRestClient {
         return executeBase(HttpMethod.POST, path, body, typeReference, headers);
     }
 
-    protected <T> BaseResponse<T> postBase(String path, MultiValueMap<String, Object> body, ParameterizedTypeReference<T> typeReference, HttpHeaders...headers) {
+    protected <T> BaseResponse<T> postBase(String path, MultiValueMap<String, Object> body, ParameterizedTypeReference<T> typeReference, HttpHeaders... headers) {
         HttpHeaders finalHeaders = (headers != null && headers.length > 0) ? headers[0] : new HttpHeaders();
         finalHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
         return executeBase(HttpMethod.POST, path, body, typeReference, finalHeaders);
@@ -199,7 +199,11 @@ public abstract class BaseRestClient {
     // =============================================================================================
 
     private String toJson(Object o) {
-        try { return JacksonUtils.toJson(o); } catch (Exception e) { return "error"; }
+        try {
+            return JacksonUtils.toJson(o);
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     private void logSuccess(HttpMethod m, String p, Object b, Object res, HttpHeaders h, long d) {

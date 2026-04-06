@@ -182,8 +182,8 @@ public final class JacksonUtils {
      * or for converting a generic {@code Object} to a specific type, leveraging Jackson's data binding capabilities.
      *
      * @param object The object to convert.
-     * @param type The target generic type (e.g., {@code new TypeReference<List<String>>(){}.getType()}).
-     * @param <T> The generic type of the target object.
+     * @param type   The target generic type (e.g., {@code new TypeReference<List<String>>(){}.getType()}).
+     * @param <T>    The generic type of the target object.
      * @return The converted object.
      */
     public static <T> T convertValue(Object object, Type type) {
@@ -203,7 +203,8 @@ public final class JacksonUtils {
             return null;
         }
         // Use TypeReference to safely convert to a generic Map
-        return MAPPER.convertValue(obj, new TypeReference<Map<String, Object>>() {});
+        return MAPPER.convertValue(obj, new TypeReference<Map<String, Object>>() {
+        });
     }
 
     /**

@@ -96,8 +96,8 @@ public class AuthenticateHeaderFilter extends OncePerRequestFilter {
             if (sessionUser != null) {
                 List<GrantedAuthority> authorities = sessionUser.authorities() == null ? List.of() :
                         sessionUser.authorities().stream()
-                                .map(SimpleGrantedAuthority::new)
-                                .collect(Collectors.toList());
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
 
                 return new UsernamePasswordAuthenticationToken(sessionUser, null, authorities);
             }
