@@ -10,5 +10,33 @@
     </parent>
 
     <artifactId>digiflow-common-web</artifactId>
+    <name>DigiFlow Common Web</name>
+    <description>Common Web configurations, Exception Handlers, and Interceptors</description>
+
+    <dependencies>
+        <!-- Core dependency -->
+        <dependency>
+            <groupId>fec.digiflow</groupId>
+            <artifactId>digiflow-common-core</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+    </dependencies>
 
 </project>

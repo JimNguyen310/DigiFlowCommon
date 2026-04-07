@@ -2,9 +2,7 @@ package fec.digiflow.common.exception;
 
 import fec.digiflow.common.dto.BaseResponse;
 import fec.digiflow.common.message.IMessage;
-import lombok.Getter;
 
-@Getter
 public class ApplicationException extends BaseException {
     public ApplicationException(IMessage message) {
         super(message.getMessage(), message.getCode(), null);

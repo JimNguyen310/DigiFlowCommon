@@ -1,15 +1,10 @@
 package fec.digiflow.common.message;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Getter
-@RequiredArgsConstructor
 public enum GlobalMessage implements IMessage {
     EMPTY("0", "0"),
     SUCCESS("000000", "Success."),
@@ -29,6 +24,21 @@ public enum GlobalMessage implements IMessage {
 
     private final String code;
     private final String message;
+
+    GlobalMessage(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
 
     public static GlobalMessage from(String code) {
         return CODE_TO_MESSAGE_MAP.getOrDefault(code, EMPTY);

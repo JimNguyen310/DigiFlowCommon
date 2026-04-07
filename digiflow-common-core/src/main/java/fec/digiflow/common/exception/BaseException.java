@@ -1,9 +1,7 @@
 package fec.digiflow.common.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
 
-@Getter
 public abstract class BaseException extends RuntimeException {
     private final String code;
 
@@ -14,5 +12,13 @@ public abstract class BaseException extends RuntimeException {
         super(message);
         this.code = code;
         this.detail = detail;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDetail() {
+        return detail;
     }
 }
